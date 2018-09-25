@@ -26,9 +26,10 @@
         <Border Background="Black" Opacity="0.4" CornerRadius="5" Margin="-1,-1,1,1"/>
         <Label Foreground="white" Style="{DynamicResource PFBeauSansProLight}" HorizontalContentAlignment="Right" FontSize="19" VerticalAlignment="Top" Margin="89,0,131,0" Width="100" Height="36">Сегодня</Label>
         <Label Name="lbDateTxt" Style="{DynamicResource PFBeauSansPro}" Foreground="white" FontSize="18" HorizontalContentAlignment="Left" VerticalAlignment="Top" Margin="190,0,15,0" Width="115" Height="40">03 августа</Label>
-        <TextBlock TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Style="{DynamicResource PFBeauSansProLight}" FontSize="19"  Name="lbContentTxt" TextAlignment="Right" Foreground="white" Margin="10,50,25,40">
-            Люди покупают продукты только потому, что с из помощью можно что-то сделать. Они покупают их для решения проблем.
+        <Label Name="lbHeaderTxt" Style="{DynamicResource PFBeauSansPro}" FontSize="12" Foreground="white" HorizontalContentAlignment ="Right" VerticalAlignment="Center" Margin="10,70,25,126" />
+        <TextBlock TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Style="{DynamicResource PFBeauSansProLight}" FontSize="19"  Name="lbDescriptionTxt" TextAlignment="Left" Foreground="white" Margin="10,98,25,32" />
+        <TextBlock Margin="225,175,25,30">
+            <Hyperlink Name="lbLink" RequestNavigate="LbLink_OnRequestNavigate"  Style="{DynamicResource PFBeauSansPro}" FontSize="12" Foreground="white" >Подробнее</Hyperlink>
         </TextBlock>
-        <Label Name="lbAuthorTxt" Style="{DynamicResource PFBeauSansPro}" FontSize="12" Foreground="white" HorizontalContentAlignment ="Right" VerticalAlignment="Center" Margin="135,149,30,15">Мор Томас.</Label>
     </Grid>
 </Window>
