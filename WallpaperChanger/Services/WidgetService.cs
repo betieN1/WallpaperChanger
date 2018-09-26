@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Net;
 using System.Windows;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -13,13 +11,19 @@ namespace WallpaperChanger.Services
     {
         public static WidgetNewItem GetNew()
         {
-            return new WidgetNewItem
+            const string url = "https://ledel.ru/bitrix/php_interface/utils/app_wallpaper.php?action=get_news";
+            try
             {
-                Header = "Рубль вырос к доллару",
-                Description = "Рубль укрепляется к бивалютной корзине благодаря скачку...",
-                Link = "https://snob.ru/news/166120"
-            };
-            //return new WidgetNewItem();
+                using (var request = new WebClient())
+                {
+                    var json = request.DownloadString(url);
+                    return JsonConvert.DeserializeObject<WidgetNewItem>(json);
+                }
+            }
+            catch
+            {
+                return new WidgetNewItem();
+            }
         }
 
         public static void ChangeWidget(MainWindow mainWin, WallpaperContentType contentType, bool changeWithContent = true)
