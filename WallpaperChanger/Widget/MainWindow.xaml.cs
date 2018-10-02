@@ -46,16 +46,16 @@ namespace WallpaperChanger.Widget
             {
                 if (string.IsNullOrEmpty(description) && string.IsNullOrEmpty(header))
                 {
-                    Visibility = Visibility.Hidden;
+                    gdMain.Visibility = Visibility.Hidden;
                     return;
                 }
-
-                Visibility = Visibility.Visible;
 
                 lbDescriptionTxt.Text = description;
                 lbHeaderTxt.Content = header;
                 lbLink.NavigateUri = new Uri(link);
                 lbDateTxt.Content = DateTime.Today.ToString("dd MMMM", new CultureInfo("ru-Ru"));
+
+                gdMain.Visibility = Visibility.Visible;
             }));
         }
 
