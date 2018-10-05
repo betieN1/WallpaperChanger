@@ -39,7 +39,7 @@ namespace WallpaperChanger.Services
         private static void SetWidgetContent(MainWindow mainWin)
         {
             var lastNew = GetNew();
-            mainWin.SetContent(lastNew.Description, lastNew.Header, lastNew.Link);
+            mainWin.SetContent(lastNew.Header, lastNew.Link);
         }
 
         private static Point GetCoordinate(MainWindow mainWin, WallpaperContentType contentType)
@@ -59,8 +59,6 @@ namespace WallpaperChanger.Services
 
         public class WidgetNewItem
         {
-            public string Description { get; set; }
-
             public string Header { get; set; }
 
             public string Link { get; set; }

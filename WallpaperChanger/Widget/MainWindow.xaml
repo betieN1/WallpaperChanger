@@ -25,11 +25,10 @@
     <Grid Name="gdMain" Visibility="Hidden">
         <Border Background="Black" Opacity="0.4" CornerRadius="5" Margin="-1,-1,1,1"/>
         <Label Foreground="white" Style="{DynamicResource PFBeauSansProLight}" HorizontalContentAlignment="Right" FontSize="19" VerticalAlignment="Top" Margin="89,0,131,0" Width="100" Height="36">Сегодня</Label>
-        <Label Name="lbDateTxt" Style="{DynamicResource PFBeauSansPro}" Foreground="white" FontSize="18" HorizontalContentAlignment="Left" VerticalAlignment="Top" Margin="190,0,15,0" Width="115" Height="40">03 августа</Label>
-        <Label Name="lbHeaderTxt" Style="{DynamicResource PFBeauSansPro}" FontSize="14" Foreground="white" HorizontalContentAlignment ="Right" VerticalAlignment="Center" Margin="10,47,25,145" Height="28"/>
-        <TextBlock Name="lbDescriptionTxt" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Style="{DynamicResource PFBeauSansProLight}" FontSize="12" TextAlignment="Left" Foreground="white" Margin="10,80,25,61" Height="79" />
+        <Label Name="lbDateTxt" Style="{DynamicResource PFBeauSansPro}" Foreground="white" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalAlignment="Top" Margin="190,0,15,0" Width="115" Height="40">03 августа</Label>
+        <Label Name="lbHeaderTxt" Style="{DynamicResource PFBeauSansPro}" FontSize="12" Foreground="white" HorizontalContentAlignment ="Right" VerticalAlignment="Center" Margin="10,47,25,145" Height="28"/>
         <TextBlock Margin="225,175,25,30">
-            <Hyperlink Name="lbLink" RequestNavigate="LbLink_OnRequestNavigate"  Style="{DynamicResource PFBeauSansPro}" FontSize="12" Foreground="white" >Подробнее</Hyperlink>
+            <Hyperlink Name="lbLink" RequestNavigate="LbLink_OnRequestNavigate"  Style="{DynamicResource PFBeauSansPro}" FontSize="14" Foreground="white" >Подробнее</Hyperlink>
         </TextBlock>
     </Grid>
 </Window>

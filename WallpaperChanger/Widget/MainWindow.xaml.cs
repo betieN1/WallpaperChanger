@@ -40,17 +40,16 @@ namespace WallpaperChanger.Widget
             }));
         }
 
-        public void SetContent(string description, string header, string link)
+        public void SetContent(string header, string link)
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                if (string.IsNullOrEmpty(description) && string.IsNullOrEmpty(header))
+                if (string.IsNullOrEmpty(header))
                 {
                     gdMain.Visibility = Visibility.Hidden;
                     return;
                 }
 
-                lbDescriptionTxt.Text = description;
                 lbHeaderTxt.Content = header;
                 lbLink.NavigateUri = new Uri(link);
                 lbDateTxt.Content = DateTime.Today.ToString("dd MMMM", new CultureInfo("ru-Ru"));
