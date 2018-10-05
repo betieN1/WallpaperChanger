@@ -50,7 +50,7 @@ namespace WallpaperChanger.Widget
                     return;
                 }
 
-                lbHeaderTxt.Content = header;
+                lbHeaderTxt.Text = header;
                 lbLink.NavigateUri = new Uri(link);
                 lbDateTxt.Content = DateTime.Today.ToString("dd MMMM", new CultureInfo("ru-Ru"));
 
