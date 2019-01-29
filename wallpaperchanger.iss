@@ -35,9 +35,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: startup; Description: "Добавить в автозагрузку"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "D:\Work\WallpaperChanger\WallpaperChanger\bin\Release\settings.ini"; DestDir: "{%USERPROFILE}\LEDEL Wallpaper"; Flags: ignoreversion
-Source: "D:\Work\WallpaperChanger\WallpaperChanger\bin\Release\LEDELWallpaper.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Work\WallpaperChanger\WallpaperChanger\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Projects\WallpaperChanger\WallpaperChanger\bin\Release\settings.ini"; DestDir: "{%USERPROFILE}\LEDEL Wallpaper"; Flags: ignoreversion
+Source: "D:\Projects\WallpaperChanger\WallpaperChanger\bin\Release\LEDELWallpaper.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Projects\WallpaperChanger\WallpaperChanger\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

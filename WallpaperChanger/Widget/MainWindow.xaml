@@ -13,7 +13,8 @@
         Height="220"
         Top="-500"
         Left="-500"
-        ShowActivated="False">
+        ShowActivated="False"
+        MouseMove="MainWindow_OnMouseMove">
     <Window.Resources>
         <Style x:Key="PFBeauSansProLight">
             <Setter Property="TextElement.FontFamily" Value="/Fonts/PFBeauSansPro-Light.otf#PF BeauSans Pro Light"/>
