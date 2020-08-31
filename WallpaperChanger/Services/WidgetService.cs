@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Net;
 using System.Windows;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -11,12 +9,21 @@ namespace WallpaperChanger.Services
 {
     public static class WidgetService
     {
-        private static WidgetTextItem[] _texts;
-
-        public static void LoadTexts()
+        public static WidgetNewItem GetNew()
         {
-            var texts = File.ReadAllText("Content\\texts.js");
-            _texts = JsonConvert.DeserializeObject<WidgetTextItem[]>(texts);
+            const string url = "https://ledel.ru/bitrix/php_interface/utils/app_wallpaper.php?action=get_news";
+            try
+            {
+                using (var request = new WebClient())
+                {
+                    var json = request.DownloadString(url);
+                    return JsonConvert.DeserializeObject<WidgetNewItem>(json);
+                }
+            }
+            catch
+            {
+                return new WidgetNewItem();
+            }
         }
 
         public static void ChangeWidget(MainWindow mainWin, WallpaperContentType contentType, bool changeWithContent = true)
@@ -31,13 +38,8 @@ namespace WallpaperChanger.Services
 
         private static void SetWidgetContent(MainWindow mainWin)
         {
-            if (_texts != null && _texts.Any())
-            {
-                var random = new Random();
-                var index = random.Next(0, _texts.Length - 1);
-                var content = _texts[index];
-                mainWin.SetContent(content.Text, content.Author);
-            }
+            var lastNew = GetNew();
+            mainWin.SetContent(lastNew.Header, lastNew.Link);
         }
 
         private static Point GetCoordinate(MainWindow mainWin, WallpaperContentType contentType)
@@ -55,11 +57,11 @@ namespace WallpaperChanger.Services
             }
         }
 
-        public class WidgetTextItem
+        public class WidgetNewItem
         {
-            public string Text { get; set; }
+            public string Header { get; set; }
 
-            public string Author { get; set; }
+            public string Link { get; set; }
         }
     }
 }

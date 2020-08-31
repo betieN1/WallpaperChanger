@@ -52,8 +52,6 @@ namespace WallpaperChanger
             _mainWin = new MainWindow();
             _mainWin.Show();
 
-            WidgetService.LoadTexts();
-
             new Thread(() => WallpaperServices.Check(_mainWin))
             {
                 IsBackground = true

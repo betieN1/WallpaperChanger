@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Navigation;
 
 namespace WallpaperChanger.Widget
 {
@@ -38,14 +41,36 @@ namespace WallpaperChanger.Widget
             }));
         }
 
-        public void SetContent(string content, string author)
+        public void SetContent(string header, string link)
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                lbContentTxt.Text = content;
-                lbAuthorTxt.Content = author;
+                if (string.IsNullOrEmpty(header))
+                {
+                    gdMain.Visibility = Visibility.Hidden;
+                    return;
+                }
+
+                lbHeaderTxt.Text = header;
+                lbLink.NavigateUri = new Uri(link);
                 lbDateTxt.Content = DateTime.Today.ToString("dd MMMM", new CultureInfo("ru-Ru"));
+
+                gdMain.Visibility = Visibility.Visible;
             }));
+        }
+
+        private void LbLink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
+
+        private void MainWindow_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
     }
 }
