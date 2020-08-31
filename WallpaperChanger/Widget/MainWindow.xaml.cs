@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Navigation;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace WallpaperChanger.Widget
 {
@@ -19,6 +19,8 @@ namespace WallpaperChanger.Widget
 
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        private string _content;
 
         public MainWindow()
         {
@@ -41,7 +43,7 @@ namespace WallpaperChanger.Widget
             }));
         }
 
-        public void SetContent(string header, string link)
+        public void SetContent(string header, string content)
         {
             Dispatcher.Invoke(new Action(() =>
             {
@@ -51,18 +53,12 @@ namespace WallpaperChanger.Widget
                     return;
                 }
 
+                _content = content;
                 lbHeaderTxt.Text = header;
-                lbLink.NavigateUri = new Uri(link);
                 lbDateTxt.Content = DateTime.Today.ToString("dd MMMM", new CultureInfo("ru-Ru"));
 
                 gdMain.Visibility = Visibility.Visible;
             }));
-        }
-
-        private void LbLink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
         }
 
         private void MainWindow_OnMouseMove(object sender, MouseEventArgs e)
@@ -71,6 +67,18 @@ namespace WallpaperChanger.Widget
             {
                 this.DragMove();
             }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var xCoord = Screen.PrimaryScreen.Bounds.Size.Width / 2 - Width;
+            var yCoord = Screen.PrimaryScreen.Bounds.Size.Height / 2 - Height;
+
+            var contentWindow = new ContentWindow();
+            contentWindow.Left = xCoord;
+            contentWindow.Top = yCoord;
+            contentWindow.tbContentTxt.Text = _content;
+            contentWindow.ShowDialog();
         }
     }
 }

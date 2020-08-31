@@ -11,7 +11,7 @@ namespace WallpaperChanger.Services
     {
         public static WidgetNewItem GetNew()
         {
-            const string url = "https://ledel.ru/bitrix/php_interface/utils/app_wallpaper.php?action=get_news";
+            const string url = "https://ledel.ru/bitrix/php_interface/utils/app_wallpaper_private.php?action=get_news&secret=abcdefg123";
             try
             {
                 using (var request = new WebClient())
@@ -39,7 +39,7 @@ namespace WallpaperChanger.Services
         private static void SetWidgetContent(MainWindow mainWin)
         {
             var lastNew = GetNew();
-            mainWin.SetContent(lastNew.Header, lastNew.Link);
+            mainWin.SetContent(lastNew.Header, lastNew.Content);
         }
 
         private static Point GetCoordinate(MainWindow mainWin, WallpaperContentType contentType)
@@ -61,7 +61,7 @@ namespace WallpaperChanger.Services
         {
             public string Header { get; set; }
 
-            public string Link { get; set; }
+            public string Content { get; set; }
         }
     }
 }
